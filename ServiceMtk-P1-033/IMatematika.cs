@@ -12,15 +12,24 @@ namespace ServiceMtk_P1_033
     public interface IMatematika
     {
         [OperationContract]
+        [FaultContract(typeof(MatchFault))]
         /* output->*/
         int Tambah(int a, int b); //method
+
         [OperationContract]
+        [FaultContract(typeof(MatchFault))]
         int Kurang(int a, int b); //input
+
         [OperationContract]
+        [FaultContract(typeof(MatchFault))]
         int Kali(int a, int b);
+
         [OperationContract]
+        [FaultContract(typeof(MatchFault))]
         int Bagi(int a, int b);
+
         [OperationContract]
+        [FaultContract(typeof(MatchFault))]
         Koordinat TKoordinat(Koordinat a, Koordinat b); //object dari class
         // TODO: Add your service operations here
     }
@@ -43,5 +52,15 @@ namespace ServiceMtk_P1_033
         }
     }
 
+
+    //Tambahkan Kelas Berikut
+    [DataContract]
+    class MatchFault
+    {
+        [DataMember]
+        public string Kode { get; set; }
+        [DataMember]
+        public string Pesan { get; set; }
+    }
 
 }
